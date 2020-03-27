@@ -1,4 +1,4 @@
-*** Упрощенный Schedule Trigger
+### Упрощенный Schedule Trigger
 
 Требуется реализовать метод scheduleExecution класса ScheduleTrigger.
 
