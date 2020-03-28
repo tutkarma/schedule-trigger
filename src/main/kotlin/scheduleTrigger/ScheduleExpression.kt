@@ -36,7 +36,7 @@ class ScheduleExpression(schedule: String) {
             when (position) {
                 PositionType.SECOND.value -> setNumberHits(this.seconds, term, max=60)
                 PositionType.MINUTE.value -> setNumberHits(this.minutes, term,  max=60)
-                PositionType.HOUR.value -> setNumberHits(this.hours, term, max=60)
+                PositionType.HOUR.value -> setNumberHits(this.hours, term, max=24)
                 PositionType.DAY_OF_MONTH.value -> setDaysOfMonth(term)
                 PositionType.MONTH.value -> setMonths(term)
                 PositionType.DAY_OF_WEEK.value -> setDaysOfWeek(term)
