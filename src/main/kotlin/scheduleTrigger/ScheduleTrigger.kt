@@ -1,7 +1,6 @@
 package scheduleTrigger
 
 import java.util.*
-import kotlin.concurrent.schedule
 import kotlin.concurrent.timerTask
 
 class ScheduleTrigger {
@@ -11,8 +10,10 @@ class ScheduleTrigger {
         val scheduleExpr = ScheduleExpression(schedule)
         val scheduleTask = ScheduleTask(scheduleExpr, task)
 
-        if (scheduleTask.isPeriodic()) {
-            println("periodic")
+        if (scheduleTask.isPeriodic) {
+            timer.schedule(timerTask {
+                scheduleTask.run()
+            }, scheduleTask.nextExecutionTime(), scheduleTask.period())
         } else {
             timer.schedule(timerTask {
                 scheduleTask.run()

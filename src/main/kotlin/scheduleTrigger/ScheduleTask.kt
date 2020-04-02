@@ -2,14 +2,10 @@ package scheduleTrigger
 
 import java.util.*
 
-class ScheduleTask(expr: ScheduleExpression, task: Runnable) {
+class ScheduleTask(private val expression: ScheduleExpression, private val task: Runnable) {
 
-    val task = task
-    val scheduleExpr = expr
-
-    fun isPeriodic(): Boolean {
-        return true;
-    }
+    val isPeriodic: Boolean
+        get() = expression.isPeriodic
 
     fun run() {
         task.run()
@@ -17,6 +13,13 @@ class ScheduleTask(expr: ScheduleExpression, task: Runnable) {
 
     fun nextExecutionTime(): Date {
         val date = Date()
-        return date
+        return expression.next(date)
+    }
+
+    fun period(): Long {
+        val date = Date()
+        val firstExecution = expression.next(date)
+        val secondExecution = expression.next(firstExecution)
+        return secondExecution.time - firstExecution.time
     }
 }
